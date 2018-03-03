@@ -188,7 +188,8 @@ class AjaxComment_Plugin implements Typecho_Plugin_Interface
         <script type="text/javascript">
             var ajaxcomment_url = '<?php echo $options->index('/action/ajaxcomment?do=post&comment_post_ID=' . $archive->cid);?>';
             var loading_div = '<div id="AjaxComment_loading" style="display:none"><img src="<?php echo $plugin_url; ?>image/loading.gif"/></div>';
-            var success_div = '<div class="AjaxComment_success"><img src="<?php echo $plugin_url; ?>image/success.png" />&nbsp;提交成功.</div>';
+            // var success_div = '<div class="AjaxComment_success"><img src="<?php echo $plugin_url; ?>image/success.png" />&nbsp;提交成功.</div>';
+            var success_div = '';
             var error_div = '<div id="AjaxComment_error" style="display:none"><img src="<?php echo $plugin_url; ?>image/error.png"/><span id="AjaxComment_msg"></span></div>';
             var id_format = 'comment-{id}';
             var respond_id = 'respond-post-<?php echo $archive->cid;?>';
@@ -201,9 +202,10 @@ class AjaxComment_Plugin implements Typecho_Plugin_Interface
             var comment_children_list_element = '<?php echo $settings->comment_children_list_element; ?>';
             var comment_children_list_class = '<?php echo $settings->comment_children_list_class; ?>';
             var comment_children_list_class_one = comment_children_list_class.split(' ')[0];
+
         </script>
         <?php
-        echo '<script type="text/javascript" src="' . $plugin_url . 'js/ajaxcomment.min.js?v=20170426"></script>';
+        echo '<script type="text/javascript" src="' . $plugin_url . 'js/ajaxcomment.js?v=20170426"></script>';
     }
 
 }

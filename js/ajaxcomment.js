@@ -53,6 +53,8 @@ function appendChildHtml(refchild, html) {
 }
 
 function insertBeforeHtml(refchild, refchild2, html) {
+    console.log(refchild);
+    console.log(refchild2);
     var childs = parseToDOMs(html);
     for (var i = 0; i < childs.length; i++) {
         if (childs[i].nodeType == 1) {
@@ -84,7 +86,14 @@ function comment_append(content_html) {
     }
 
     if (_id('comment-parent') == undefined) {
-        appendChildHtml(document.getElementsByClassName(comment_list_class_one)[0], content_html);
+        var cele = document.getElementsByClassName(comment_list_class_one)[0].childNodes;
+        console.log(cele);
+        var cnum = cele.length;
+        if (comments_order == 'DESC' && cnum > 0) {
+            insertBeforeHtml(document.getElementsByClassName(comment_list_class)[0], document.getElementsByClassName(comment_list_class_one)[0].firstChild, content_html);
+        } else {
+            appendChildHtml(document.getElementsByClassName(comment_list_class_one)[0], content_html);
+        }
     } else {
         var parent_id = id_format.replace('{id}', _id('comment-parent').value);
         TypechoComment.cancelReply();
@@ -104,7 +113,8 @@ function comment_append(content_html) {
             refchild.appendChild(comment_list);
             refchild = comment_list;
         }
-        if (comments_order == 'DESC') {
+        console.log(refchild);
+        if (comments_order == 'DESC' && refchild.childNodes[0] != undefined) {
             var refchild2 = refchild.childNodes[0];
             insertBeforeHtml(refchild, refchild2, content_html);
         } else {
@@ -144,8 +154,9 @@ function registAjaxCommentEvent() {
                     if (xhr.status == 200) {
                         comment_append(xhr.responseText);
                     } else if (xhr.status == 405) {
-                        _id('AjaxComment_error').style.display = 'block';
-                        _id('AjaxComment_msg').innerHTML = xhr.responseText;
+                        // _id('AjaxComment_error').style.display = 'block';
+                        // _id('AjaxComment_msg').innerHTML = xhr.responseText;
+                        alert(xhr.responseText);
                     } else {
                         alert('Ajax 未知错误');
                     }
