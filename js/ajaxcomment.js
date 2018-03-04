@@ -53,8 +53,6 @@ function appendChildHtml(refchild, html) {
 }
 
 function insertBeforeHtml(refchild, refchild2, html) {
-    console.log(refchild);
-    console.log(refchild2);
     var childs = parseToDOMs(html);
     for (var i = 0; i < childs.length; i++) {
         if (childs[i].nodeType == 1) {
@@ -87,7 +85,6 @@ function comment_append(content_html) {
 
     if (_id('comment-parent') == undefined) {
         var cele = document.getElementsByClassName(comment_list_class_one)[0].childNodes;
-        console.log(cele);
         var cnum = cele.length;
         if (comments_order == 'DESC' && cnum > 0) {
             insertBeforeHtml(document.getElementsByClassName(comment_list_class)[0], document.getElementsByClassName(comment_list_class_one)[0].firstChild, content_html);
@@ -113,7 +110,6 @@ function comment_append(content_html) {
             refchild.appendChild(comment_list);
             refchild = comment_list;
         }
-        console.log(refchild);
         if (comments_order == 'DESC' && refchild.childNodes[0] != undefined) {
             var refchild2 = refchild.childNodes[0];
             insertBeforeHtml(refchild, refchild2, content_html);
