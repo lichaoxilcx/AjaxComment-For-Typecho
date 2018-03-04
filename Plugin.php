@@ -192,7 +192,7 @@ class AjaxComment_Plugin implements Typecho_Plugin_Interface
             var success_div = '';
             var error_div = '<div id="AjaxComment_error" style="display:none"><img src="<?php echo $plugin_url; ?>image/error.png"/><span id="AjaxComment_msg"></span></div>';
             var id_format = 'comment-{id}';
-            var respond_id = 'respond-post-<?php echo $archive->cid;?>';
+            var respond_id = '<?php $archive->respondId();?>';
             var comments_order = '<?php echo $options->commentsOrder; ?>';
 
             var comment_list_element = '<?php echo $settings->comment_list_element; ?>';
